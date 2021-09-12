@@ -124,6 +124,11 @@ class CreatePaymentRequest extends AbstractPaymentRequest implements CreatePayme
     private $_metadata;
 
     /**
+     * @var string|null Идентификатор пользователя в вашей системе
+     */
+    private $_merchantCustomerId;
+
+    /**
      * Возвращает объект получателя платежа
      * @return RecipientInterface|null Объект с информацией о получателе платежа или null если получатель не задан
      */
@@ -586,5 +591,40 @@ class CreatePaymentRequest extends AbstractPaymentRequest implements CreatePayme
     public static function builder()
     {
         return new CreatePaymentRequestBuilder();
+    }
+
+    /**
+     * Возвращает идентификатор пользователя в вашей системе
+     * @return string|null
+     */
+    public function getMerchantCustomerId()
+    {
+        return $this->_merchantCustomerId;
+    }
+
+    /**
+     * Проверяет были ли установлен идентификатор пользователя в вашей системе
+     * @return bool
+     */
+    public function hasMerchantCustomerId()
+    {
+        return !empty($this->_merchantCustomerId);
+    }
+
+    /**
+     * Устанавливает идентификатор пользователя в вашей системе
+     * @param string|null $value
+     */
+    public function setMerchantCustomerId($value)
+    {
+        if ($value === null || $value === '') {
+            $this->_merchantCustomerId = null;
+        } elseif (TypeCast::canCastToString($value)) {
+            $this->_merchantCustomerId = (string)$value;
+        } else {
+            throw new InvalidPropertyValueTypeException(
+                'Invalid merchantCustomerId value type in CreatePaymentRequest', 0, 'CreatePaymentRequest.merchantCustomerId', $value
+            );
+        }
     }
 }

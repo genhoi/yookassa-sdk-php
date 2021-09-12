@@ -300,4 +300,22 @@ interface CreatePaymentRequestInterface
      * @param TransferInterface[]|array|null Данные о распределении денег
      */
     function setTransfers($value);
+
+    /**
+     * Возвращает идентификатор пользователя в вашей системе
+     * @return string
+     */
+    public function getMerchantCustomerId();
+
+    /**
+     * Проверяет были ли установлен идентификатор пользователя в вашей системе
+     * @return bool
+     */
+    public function hasMerchantCustomerId();
+
+    /**
+     * Устанавливает идентификатор пользователя в вашей системе
+     * @param string $value
+     */
+    public function setMerchantCustomerId($value);
 }

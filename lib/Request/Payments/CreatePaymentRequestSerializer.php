@@ -151,6 +151,9 @@ class CreatePaymentRequestSerializer
                 );
             }
         }
+        if ($request->hasMerchantCustomerId()) {
+            $result['merchant_customer_id'] = $request->getMerchantCustomerId();
+        }
 
         foreach (self::$propertyMap as $name => $property) {
             $value = $request->{$property};

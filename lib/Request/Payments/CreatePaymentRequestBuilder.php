@@ -304,6 +304,19 @@ class CreatePaymentRequestBuilder extends AbstractPaymentRequestBuilder
     }
 
     /**
+     * Устанавливает идентификатор пользователя в вашей системе
+     * @param string $value Идентификатор пользователя в вашей системе
+     * @return CreatePaymentRequestBuilder Инстанс текущего билдера
+     *
+     * @throws InvalidPropertyValueTypeException Выбрасывается если переданное значение не является строкой
+     */
+    public function setMerchantCustomerId($value)
+    {
+        $this->currentObject->setMerchantCustomerId($value);
+        return $this;
+    }
+
+    /**
      * Строит и возвращает объект запроса для отправки в API ЮKassa
      * @param array|null $options Массив параметров для установки в объект запроса
      * @return CreatePaymentRequestInterface|AbstractPaymentRequest|AbstractRequest Инстанс объекта запроса
